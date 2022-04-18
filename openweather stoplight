@@ -1,7 +1,10 @@
-openapi: 3.0.0
+Stoplight workspace: https://matmccabe.stoplight.io/docs/weather/branches/main/YXBpOjExMTIxODY3-open-weather-map-api
+
+
+openapi: 3.1.0
 info:
   title: OpenWeatherMap API
-  version: '2.5'
+  version: '1.0 [Version] 2.5'
   description: >-
     Get the current weather, daily forecast for 16 days, and a
     three-hour-interval forecast for 5 days for your city. Helpful stats,
@@ -9,9 +12,9 @@ info:
     Interactive maps show precipitation, clouds, pressure, wind around your
     location stations. Data is available in JSON, XML, or HTML format. **Note**:
     This sample Swagger file covers the `current` endpoint only from the
-    OpenWeatherMap API. <br/><br/>**Note**: All parameters are optional, but you
-    must select at least one parameter. Calling the API by city ID (using the
-    `id` parameter) will provide the most precise location results.
+    OpenWeatherMap API. <br/><br/> **Note**: All parameters are optional, but
+    you must select at least one parameter. Calling the API by city ID (using
+    the `id` parameter) will provide the most precise location results.
   contact:
     name: Support
     url: 'https://openweathermap.org/api'
@@ -21,14 +24,16 @@ info:
     name: Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
     url: 'https://creativecommons.org/licenses/by-sa/4.0/'
 servers:
-  - url: 'https://api.openweathermap.org/data/2.5'
-    description: prod
+  - url: >-
+      https://todos.stoplight.io/v1 [url]:
+      https://api.openweathermap.org/data/2.5
+    description: Product
 paths:
-  /weather:
+  /Weather:
     get:
       summary: weather
       tags:
-        - Weather endpoints
+        - 'Weather endpoints '
       responses:
         '200':
           description: OK
@@ -37,113 +42,62 @@ paths:
               schema:
                 description: ''
                 type: object
+                x-examples:
+                  example-1:
+                    coord:
+                      lon: -121.95
+                      lat: 37.35
+                    weather:
+                      - id: 803
+                        main: Clouds
+                        description: broken clouds
+                        icon: 04n
+                    base: stations
+                    main:
+                      temp: 45.25
+                      feels_like: 41.16
+                      temp_min: 41
+                      temp_max: 50
+                      pressure: 1026
+                      humidity: 75
+                    visibility: 16093
+                    wind:
+                      speed: 2.57
+                      deg: 36
+                    clouds:
+                      all: 75
+                    dt: 1579415808
+                    sys:
+                      type: 1
+                      id: 5845
+                      country: US
+                      sunrise: 1579360793
+                      sunset: 1579396557
+                    timezone: -28800
+                    id: 0
+                    name: Santa Clara
+                    cod: 200
                 properties:
-                  coord:
-                    type: object
-                    required:
-                      - lon
-                      - lat
-                    properties:
-                      lon:
-                        type: number
-                        description: 'City geo location, longitude'
-                        example: 145.77
-                      lat:
-                        type: number
-                        description: 'City geo location, latitude'
-                        example: -16.92
-                  weather:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: number
-                          description: Weather condition id
-                        main:
-                          type: string
-                          minLength: 1
-                          description: >-
-                            Group of weather parameters (Rain, Snow, Extreme
-                            etc.)
-                        description:
-                          type: string
-                          minLength: 1
-                          description: Weather condition within the group
-                        icon:
-                          type: string
-                          minLength: 1
-                          description: Weather icon id
-                      required:
-                        - id
-                        - main
-                        - description
-                        - icon
-                  base:
-                    type: string
-                    minLength: 1
-                    description: Internal parameter
-                  main:
-                    type: object
-                    required:
-                      - temp
-                      - feels_like
-                      - temp_min
-                      - temp_max
-                      - pressure
-                      - humidity
-                    properties:
-                      temp:
-                        type: number
-                        description: >-
-                          Temperature. Unit Default: Kelvin, Metric: Celsius,
-                          Imperial: Fahrenheit.
-                      feels_like:
-                        type: number
-                        description: What the weather feels like despite the actual numbers
-                      temp_min:
-                        type: number
-                        description: >-
-                          Minimum temperature at the moment. This is deviation
-                          from current temp that is possible for large cities
-                          and megalopolises geographically expanded (use these
-                          parameter optionally). Unit Default: Kelvin, Metric:
-                          Celsius, Imperial: Fahrenheit.
-                      temp_max:
-                        type: number
-                        description: >-
-                          Maximum temperature at the moment. This is deviation
-                          from current temp that is possible for large cities
-                          and megalopolises geographically expanded (use these
-                          parameter optionally). Unit Default: Kelvin, Metric:
-                          Celsius, Imperial: Fahrenheit.
-                      pressure:
-                        type: number
-                        description: >-
-                          Atmospheric pressure (on the sea level, if there is no
-                          sea_level or grnd_level data), hPa
-                      humidity:
-                        type: number
-                        description: 'Humidity, %'
-                  visibility:
+                  Mathew Mr_Matmccabe McCabe:
                     type: number
                   wind:
                     type: object
                     required:
                       - speed
                       - deg
-                    description: ''
                     properties:
                       speed:
                         type: number
                         description: >-
-                          Wind speed. Unit Default: meter/sec, Metric:
-                          meter/sec, Imperial: miles/hour.
+                          ‘Wind speed. Unit Default: meter/sec, Metric:
+                          meter/sec, Imperial: miles/hour.’
+
+                          example: 5.1
                       deg:
                         type: number
-                        description: 'Wind direction, degrees (meteorological)'
+                        description: |-
+                          description: ‘’
+                          example: 150
                   clouds:
                     type: object
                     required:
@@ -151,10 +105,14 @@ paths:
                     properties:
                       all:
                         type: number
-                        description: 'Cloudiness, %'
+                        description: |-
+                          ‘Cloudiness, %’
+                          example: 75
                   dt:
                     type: number
-                    description: 'Time of data calculation, unix, UTC'
+                    description: |-
+                      ‘Time of data calculation, unix, UTC’
+                      example: 1435658272
                   sys:
                     type: object
                     required:
@@ -166,39 +124,57 @@ paths:
                     properties:
                       type:
                         type: number
-                        description: Internal parameter
+                        description: |
+                          Internal parameter
+                          example: 1
                       id:
                         type: number
-                        description: Internal parameter
+                        description: |-
+                          Internal parameter
+                          example: 8166
                       country:
                         type: string
                         minLength: 1
-                        description: 'Country code (GB, JP etc.)'
+                        description: |-
+                          ‘Country code (GB, JP etc.)’
+                          example: AU
                       sunrise:
                         type: number
-                        description: 'Sunrise time, unix, UTC'
+                        description: |-
+                          ‘Sunrise time, unix, UTC’
+                          example: 1435610796
                       sunset:
                         type: number
-                        description: 'Sunset time, unix, UTC'
+                        description: |-
+                          ‘Sunset time, unix, UTC’
+                          example: 1435650870
                   timezone:
                     type: number
-                    description: the timezone for the station
+                    description: |-
+                      The timezone for the station
+                      example: -28800
                   id:
                     type: number
-                    description: City ID
+                    description: |-
+                      City ID
+                      example: 2172797
                   name:
                     type: string
                     minLength: 1
-                    description: Name
+                    description: |-
+                      Name
+                      example: Cairns
                   cod:
                     type: number
-                    description: Internal parameter
+                    description: |-
+                      Internal parameter
+                      example: 200
                 required:
-                  - coord
-                  - weather
-                  - base
-                  - main
-                  - visibility
+                  - Mathew Mr_Matmccabe McCabe
+                  - Mathew Mr_Matmccabe McCabe
+                  - Mathew Mr_Matmccabe McCabe
+                  - Mathew Mr_Matmccabe McCabe
+                  - Mathew Mr_Matmccabe McCabe
                   - wind
                   - clouds
                   - dt
@@ -207,42 +183,6 @@ paths:
                   - id
                   - name
                   - cod
-              examples:
-                Example:
-                  value:
-                    coord:
-                      lon: 0
-                      lat: 0
-                    weather:
-                      - id: 0
-                        main: string
-                        description: string
-                        icon: string
-                    base: string
-                    main:
-                      temp: 0
-                      feels_like: 0
-                      temp_min: 0
-                      temp_max: 0
-                      pressure: 0
-                      humidity: 0
-                    visibility: 0
-                    wind:
-                      speed: 0
-                      deg: 0
-                    clouds:
-                      all: 0
-                    dt: 0
-                    sys:
-                      type: 0
-                      id: 0
-                      country: string
-                      sunrise: 0
-                      sunset: 0
-                    timezone: 0
-                    id: 0
-                    name: string
-                    cod: 0
       operationId: get-weather
       description: >-
         Access current weather data for any location on Earth including over
@@ -251,10 +191,6 @@ paths:
       parameters:
         - schema:
             type: string
-            enum:
-              - standard
-              - metric
-              - imperial
           in: query
           name: zip
           description: >-
@@ -263,6 +199,10 @@ paths:
             default.
         - schema:
             type: string
+            enum:
+              - standard
+              - metric
+              - imperial
           in: query
           name: units
           description: >-
@@ -273,24 +213,12 @@ paths:
             type: string
           in: query
           name: q
-          description: >-
-            **City name**. *Example: London*. You can call by city name, or by
-            city name and country code. The API responds with a list of results
-            that match a searching word. For the query value, type the city name
-            and optionally the country code divided by a comma; use ISO 3166
-            country codes.
+          description: ' **City name**. *Example: London*. You can call by city name, or by city name and country code. The API responds with a list of results that match a searching word. For the query value, type the city name and optionally the country code divided by a comma; use ISO 3166 country codes.'
         - schema:
             type: string
           in: query
           name: id
-          description: >-
-            **City ID**. *Example: `2172797`*. You can call by city ID. The API
-            responds with the exact result. The List of city IDs can be
-            downloaded [here](http://bulk.openweathermap.org/sample/). You can
-            include multiple cities in this parameter — just separate them by
-            commas. The limit of locations is 20. *Note: A single ID counts as a
-            one API call. So, if you have city IDs, it’s treated as 3 API
-            calls.*
+          description: ' **City ID**. *Example: `2172797`*. You can call by city ID. The API responds with the exact result. The List of city IDs can be downloaded [here](http://bulk.openweathermap.org/sample/). You can include multiple cities in this parameter — just separate them by commas. The limit of locations is 20. *Note: A single ID counts as a one API call. So, if you have city IDs, it’s treated as 3 API calls.*'
         - schema:
             type: string
           in: query
@@ -303,7 +231,7 @@ paths:
             type: string
             default: en
             enum:
-              - ar
+              - 'enums: “ar'
               - bg
               - ca
               - cz
@@ -335,7 +263,7 @@ paths:
               - ua
               - vi
               - zh_cn
-              - zh_tw
+              - zh_tw”
           in: query
           name: lang
           description: >-
@@ -353,26 +281,74 @@ paths:
             Traditional - `zh_tw`.
         - schema:
             type: string
+            default: json
             enum:
               - json
               - xml
               - html
-            default: json
           in: query
           name: mode
           description: >-
             **Mode*. *Example: html. Determines the format of the response.
             Possible values are `json`, `xml`, and `html`. If the mode parameter
             is empty, the format is `json` by default.
-    parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+          application/xml:
+            schema:
+              type: object
+              properties: {}
 components:
-  schemas: {}
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      examples:
+        - id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: '1997-10-31'
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - emailVerified
   securitySchemes:
     app_id:
       name: appid
       type: apiKey
       in: query
-      description: API key to authorize requests
   parameters:
     lon:
       name: lon
@@ -380,8 +356,5 @@ components:
       required: false
       schema:
         type: string
-      description: >-
-        **Longitude**. *Example: 139*. Longitude coordinate of the location of
-        your interest. Must use with `lat`.
 security:
   - app_id: []
