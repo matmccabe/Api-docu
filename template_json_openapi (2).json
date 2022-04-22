@@ -1,0 +1,265 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "YAML OpenAPI specification tempalte",
+    "description": "This document is the YAML template for an OpenAPI specification",
+    "version": "2.5",
+    "termsOfService": "https://github.com/matmccabe/Api-docu",
+    "contact": {
+      "name": "Mathew McCabe",
+      "url": "https://github.com/matmccabe/Api-docu",
+      "email": "matmccabe@gmail.com"
+    },
+    "license": {
+      "name": "Open for usage",
+      "url": "https://github.com/matmccabe/Api-docu"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://github.com/matmccabe/Api-docu"
+    }
+  ],
+  "paths": {
+    "/object": {
+      "get": {
+        "tags": [
+          "Tags for endpoint"
+        ],
+        "summary": "GET request for object",
+        "description": "GET endpoint in order to request information.",
+        "operationId": "GETResquest",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/a"
+          },
+          {
+            "$ref": "#/components/parameters/b"
+          },
+          {
+            "$ref": "#/components/parameters/c"
+          },
+          {
+            "$ref": "#/components/parameters/d"
+          },
+          {
+            "$ref": "#/components/parameters/e"
+          },
+          {
+            "$ref": "#/components/parameters/f"
+          },
+          {
+            "$ref": "#/components/parameters/g"
+          },
+          {
+            "$ref": "#/components/parameters/h"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "title": "Request not found",
+                  "type": "string",
+                  "example": "Not found"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "app_id": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Get request",
+      "description": "GET specific details"
+    }
+  ],
+  "externalDocs": {
+    "description": "API Documentation",
+    "url": "https://github.com/matmccabe/Api-docu"
+  },
+  "components": {
+    "parameters": {
+      "a": {
+        "name": "a",
+        "in": "query",
+        "description": "Parameter a description.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "b": {
+        "name": "b",
+        "in": "query",
+        "description": "Parameter b description.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "c": {
+        "name": "c",
+        "in": "query",
+        "description": "Parameter c description.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "d": {
+        "name": "d",
+        "in": "query",
+        "description": "Parameter d description.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "e": {
+        "name": "e",
+        "in": "query",
+        "description": "Parameter e description.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "f": {
+        "name": "f",
+        "in": "query",
+        "description": "Parameter f description. This example contains enum schema.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "standard",
+            "metric",
+            "imperial"
+          ],
+          "default": "imperial"
+        }
+      },
+      "g": {
+        "name": "g",
+        "in": "query",
+        "description": "Parameter g description. This example contains enum schema.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "ar",
+            "bg",
+            "ca",
+            "cz",
+            "de",
+            "el",
+            "en",
+            "fa",
+            "fi",
+            "fr",
+            "gl",
+            "hr",
+            "hu",
+            "it",
+            "ja",
+            "kr",
+            "la",
+            "lt",
+            "mk",
+            "nl",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "se",
+            "sk",
+            "sl",
+            "es",
+            "tr",
+            "ua",
+            "vi",
+            "zh_cn",
+            "zh_tw"
+          ],
+          "default": "en"
+        }
+      },
+      "h": {
+        "name": "h",
+        "in": "query",
+        "description": "Parameter h description. This example contains enum schema in resposne",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "json",
+            "xml",
+            "html"
+          ],
+          "default": "json"
+        }
+      }
+    },
+    "schemas": {
+      "200": {
+        "title": "Successful response",
+        "type": "object",
+        "properties": {
+          "schem1": {
+            "$ref": "#/components/schemas/schem1"
+          },
+          "schem2": {
+            "$ref": "#/components/schemas/schem2"
+          }
+        }
+      },
+      "schem1": {
+        "title": "schem1",
+        "type": "object",
+        "properties": {
+          "lon": {
+            "type": "number",
+            "description": "longitude",
+            "example": 35.2271
+          },
+          "lat": {
+            "type": "number",
+            "description": "latitude",
+            "example": 80.8431
+          }
+        }
+      },
+      "schem2": {
+        "title": "schem2",
+        "type": "object",
+        "properties": {
+          "temp": {
+            "type": "number",
+            "description": "Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.",
+            "example": 293.25
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "app_id": {
+        "type": "apiKey",
+        "description": "API key to authorize requests.",
+        "name": "appid",
+        "in": "query"
+      }
+    }
+  }
+}
