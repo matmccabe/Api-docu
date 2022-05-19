@@ -18,7 +18,9 @@ roles
 
 Required permission: ``ticket.agent`` **or** ``admin.user``
 
-``GET`` -Request sent: ``https://endpointdocu.zammad.com/api/v1/roles?full=true&page=1&per_page=150&sort_by=name,%20id&order_by=ASC,%20ASC&_=1652918790958``
+**All roles**
+
+``GET`` -Request sent: ``https://endpointdocu.zammad.com/api/v1/roles/?full=true&_={userid}``
 
 Response: 
 
@@ -199,6 +201,31 @@ Response:
 
 
 
+**Specific role**
+
+``GET`` -Request sent: ``https://endpointdocu.zammad.com/api/v1/roles/:id``
+
+Response: 
+
+.. code-block:: json 
+
+	# HTTP-Code 200 OK
+
+	{"id":4,"name":"Mathew",
+	"preferences":{},
+	"default_at_signup":false,
+	"active":true,
+	"note":"New User",
+	"updated_by_id":3,
+	"created_by_id":3,
+	"created_at":"2022-05-19T01:02:58.007Z",
+	"updated_at":"2022-05-19T01:02:58.007Z",
+	"permission_ids":[1],"knowledge_base_permission_ids":[],
+	"group_ids":{}}
+
+
+**Create role**
+
 ``POST`` -Request sent: ``https://endpointdocu.zammad.com/api/v1/roles``
 
 Response: 
@@ -228,6 +255,25 @@ Response:
 	# HTTP-Code 422 ERROR
 	{
 		{"error":"Cannot set default at signup when role has admin.branding, admin.group permissions.",
-		"error_human":"Cannot set default at signup when role has admin.branding,
-		admin.group permissions."}
+		"error_human":"Cannot set default at signup when role has admin.branding, admin.group permissions."}
+	}
+
+
+**Update role**
+
+``PUT`` -Request sent: ``https://endpointdocu.zammad.com/api/v1/roles/:id``
+
+.. code-block:: json
+	
+	# HTTP-Code 422 ERROR
+	{
+		{"id":5,"name":"User 2",
+		"default_at_signup":false,
+		"active":true,
+		"note":"To configure your system.",
+		"updated_by_id":3,"preferences":{},
+		"created_by_id":3,"created_at":"2022-05-19T01:46:44.175Z",
+		"updated_at":"2022-05-19T01:47:28.349Z",
+		"permission_ids":[],"knowledge_base_permission_ids":[],
+		"group_ids":{}}
 	}
